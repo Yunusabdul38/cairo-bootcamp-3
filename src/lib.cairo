@@ -9,4 +9,5 @@ pub mod ownable_counter;
 pub mod counter_v3;
 pub mod ownable;
 pub mod addition;
-pub mod attack_counter;
+pub mod aggregator;
+
