@@ -5,14 +5,26 @@ use cairo_bootcamp_3::student_struct::Student;
 pub trait IStudentRegistry<T> {
     // state-change function to add new student
     fn add_student(
-        ref self: T, _name: felt252, _account: ContractAddress, _age: u8, _xp: u16, _is_active: bool,id:u64,
+        ref self: T,
+        _name: felt252,
+        _account: ContractAddress,
+        _age: u8,
+        _xp: u16,
+        _is_active: bool,
+        id: u64,
     ) -> bool;
 
     // read-only function to get student
     fn get_student(self: @T, account: ContractAddress) -> (felt252, ContractAddress, u8, u16, bool);
     // fn get_all_students(self: @T) -> Span<Student>;
     fn update_student(
-        ref self: T, _name: felt252, _account: ContractAddress, _age: u8, _xp: u16, _is_active: bool,_id:u64,
+        ref self: T,
+        _name: felt252,
+        _account: ContractAddress,
+        _age: u8,
+        _xp: u16,
+        _is_active: bool,
+        _id: u64,
     ) -> bool;
     fn delete_student(ref self: T, _account: ContractAddress) -> bool;
 }
@@ -60,8 +72,8 @@ pub mod StudentRegistry {
             // validation to check if student account is valid address and  not a 0 address
             assert(!self.is_zero_address(_account), Errors::ZERO_ADDRESS);
             assert(_age > 0, 'age cannot be 0');
-            let student = Student {id,
-                name: _name, account: _account, age: _age, xp: _xp, is_active: _is_active
+            let student = Student {
+                id, name: _name, account: _account, age: _age, xp: _xp, is_active: _is_active
             };
             self.students_map.entry(_account).write(student);
 
@@ -92,8 +104,8 @@ pub mod StudentRegistry {
             let old_student: Student = self.students_map.entry(_account).read();
             // validation to check if student exist
             assert(old_student.age > 0, Errors::STUDENT_NOT_REGISTERED);
-            let new_student = Student {id:_id,
-                name: _name, account: _account, age: _age, xp: _xp, is_active: _is_active
+            let new_student = Student {
+                id: _id, name: _name, account: _account, age: _age, xp: _xp, is_active: _is_active
             };
             // update student info
             self.students_map.entry(_account).write(new_student);
@@ -107,8 +119,8 @@ pub mod StudentRegistry {
             let old_student: Student = self.students_map.entry(_account).read();
             // validation to check if student exist
             assert(old_student.age > 0, Errors::STUDENT_NOT_REGISTERED);
-        let new_student = Student {id: 0,
-                name: 0, account: Accounts::zero(), age: 0, xp: 0, is_active: false
+            let new_student = Student {
+                id: 0, name: 0, account: Accounts::zero(), age: 0, xp: 0, is_active: false
             };
             // update student info
             self.students_map.entry(_account).write(new_student);

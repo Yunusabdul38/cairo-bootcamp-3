@@ -37,7 +37,7 @@ fn test_counter_set_count_when_address_is_equal_to_owner() {
     let contract_address = deploy("counter3");
     let owner = Accounts::owner();
     let counter_dispatcher = ICounterDispatcher { contract_address };
-    start_cheat_caller_address(contract_address, owner); 
+    start_cheat_caller_address(contract_address, owner);
     counter_dispatcher.set_count(50);
     assert_eq!(counter_dispatcher.get_count(), 50);
 }
@@ -81,8 +81,8 @@ fn owner_test_counter_decrease_count_by_one_when_count_is_less_than_or_equal_to_
 }
 
 #[test]
-fn get_owner(){
-     let contract_address = deploy("counter3");
+fn get_owner() {
+    let contract_address = deploy("counter3");
     let counter_dispatcher = ICounterDispatcher { contract_address };
     assert_eq!(counter_dispatcher.get_owner(), Accounts::owner());
 }
@@ -113,6 +113,7 @@ fn non_owner_test_counter_increase_count_by_one() {
     start_cheat_caller_address(contract_address, owner);
     counter_dispatcher.increase_count_by_one();
 }
-
 //0x40608cd21b4d665f5f79ffbd0e3de9f0a56524aefff407c6a950ca299a36d34
 //0x6c0b6d11653afe753d8320e0fbf9149487e40d099b8d6866f50e8ab841d80a5
+
+
