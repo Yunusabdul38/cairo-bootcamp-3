@@ -1,7 +1,7 @@
 use snforge_std::{declare, ContractClassTrait, DeclareResultTrait, start_cheat_caller_address};
 use starknet::{ContractAddress};
 use cairo_bootcamp_3::{
-    attack_counter::{IAttackCounterDispatcher, IAttackCounterDispatcherTrait},
+    attack_counter_v2::{IAttackCounterDispatcher, IAttackCounterDispatcherTrait},
     counter_v2::{ICounterV2Dispatcher, ICounterV2DispatcherTrait}
 };
 use cairo_bootcamp_3::accounts::{Accounts};
